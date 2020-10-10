@@ -1,5 +1,7 @@
 import React from 'react';
 import './app.css';
+import {ReportPage} from '../pages';
+
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
@@ -10,7 +12,7 @@ function App(){
 
     <Router >
       <Switch>
-
+      <Route exact path="/" component={ReportPage}/>
       </Switch>
     </Router>
   
