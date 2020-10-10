@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import {GitService} from './services/';
 import App from './components/app';
 import ErrorBoundry from './components/error-boundary';

@@ -1,4 +1,4 @@
-import ReportPage from './report-page-page';
+import ReportPage from './report-page';
 
 
 export {ReportPage,

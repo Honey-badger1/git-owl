@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './list-item.css';
+import './table-item.css';
 
 
 const TableItem = ({item}) => {
