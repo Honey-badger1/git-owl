@@ -11,7 +11,7 @@ var stat = async function (config, specialParams) {
     const git = require('git-cmd');
     const _ = require('lodash');
     const util = require('util');
-
+    var {spawn} = require('child_process')
     const Table = require('cli-table');
     const moment = require('moment'); require('twix');
     let allDaysInPeriod = [];

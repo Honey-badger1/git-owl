@@ -2,8 +2,9 @@
 export default class GitService{
  
     getResource=async(path)=>{ 
+        
     const gimmeStat=require('../components/gimme-stat/index');
-        gimmeStat.json({path})
+       return await gimmeStat.json({cwd:path})
        .then(answer=>answer.json)
        
      
