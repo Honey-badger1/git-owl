@@ -9,9 +9,10 @@ let fs = require('fs');
 var stat = async function (config, specialParams) {
     // const config = require('./env');
     const git = require('git-cmd');
+
     const _ = require('lodash');
     const util = require('util');
-    var {spawn} = require('child_process')
+    var {spawn} = require('child_process');
     const Table = require('cli-table');
     const moment = require('moment'); require('twix');
     let allDaysInPeriod = [];
@@ -26,7 +27,7 @@ var stat = async function (config, specialParams) {
     function getStat(rep, since, until) {
         let cmd = git([
             'log',
-            '--no-merges',
+            '--no-merges',  
             '--pretty=medium',
             '--stat',
             '--all'
@@ -41,7 +42,7 @@ var stat = async function (config, specialParams) {
             cmd.push(`--until=${until}`);
         }
 
-        return cmd.oneline();
+        return cmd.array();
     }
 
     let resultText = '';
