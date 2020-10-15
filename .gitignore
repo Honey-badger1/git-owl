@@ -4,7 +4,6 @@
 .pnp.js
 .idea
 draft.txt
-config/default.json
 
 # testing
 /coverage
