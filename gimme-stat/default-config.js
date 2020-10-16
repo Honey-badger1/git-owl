@@ -34,7 +34,7 @@ module.exports = {
     // The file extensions will be shown in your statistic,
     // other will be under 'other' category.
     statExtensions: [
-        'js', 'html', 'htm', 'cs', 'css', 'scss', 'less', 'json', 'php', 'sql'
+        'js', 'html', 'htm', 'cs', 'css', 'scss', 'less', 'json', 'php', 'sql', 'py', 'net', 'c', 'java', 'ruby'
     ],
 
     //The users will be ignored for your statistic

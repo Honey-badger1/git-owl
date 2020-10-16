@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en-us">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Git Stats</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="main.css">
 </head>
 <body>
   <button id="open">Open Repo</button>
+  <form id="timeInter">
+     <input id="since" type="datetime-local"  name="since"  lang="en-us" />
+     <input id="until" type="datetime-local" name="until"  lang="en-us"/>
+     <button type="submit">Report</button>
+  </form>
    <div id="tableContainer" ></div>
            <script src='preload.js'>
         
         </script>
-           <script src='render.js'>
+           <script src='render.js'></script>
         
-        </script>
 
 
 	
