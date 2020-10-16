@@ -9,18 +9,11 @@ let fs = require('fs');
 var stat = async function (config, specialParams) {
     // const config = require('./env');
     const git = require('git-cmd');
-
     const _ = require('lodash');
-    const util = require('util');
-    var {spawn} = require('child_process');
-    const Table = require('cli-table');
     const moment = require('moment'); require('twix');
-    let allDaysInPeriod = [];
+    
 
-    let table = new Table({
-        head: ["Author", "Commits ", "Insertions", "Deletions", "% of changes"],
-
-    });
+  
 
     let repositories = config.cwd;
 
@@ -131,7 +124,7 @@ var stat = async function (config, specialParams) {
             if (config.daily) {
 
 
-                let day = (/Date:(.+)/mi).exec(commit);
+                let day = (/Date:(.+)/mi).exec(commit)[1];
                 day = (new Date(Date.parse(day))).toDateString();
 
                 if (!resultStat.daily[day]) {
@@ -196,11 +189,7 @@ var stat = async function (config, specialParams) {
                 }
             }).join('');
         }
-        if (config.table) {
-            table.push(
-                [author.name, author.commits, author.insertions, author.deletions, _.ceil(author.percent * 100, 2).toFixed(2)]
-            );
-        }
+     
         author.byExt = _(author.byExt).map(ext => {
             ext.percent = ext.changed / author.changed;
             ext.graphPercent = _.ceil(ext.percent * 100, 0);
@@ -243,47 +232,11 @@ var stat = async function (config, specialParams) {
     }).orderBy('changed', 'desc').value();
 
     if (config.daily) {
-        let maxChanged = _(resultStat.daily).toArray().maxBy('changed');
+       
 
         resultStat.daily = _(resultStat.daily).map(day => {
-            day.percent = day.changed / maxChanged.changed;
-            day.graphPercent = _.ceil((day.percent * 100), 0);
-            let filledBarLenghtDay = Math.floor(day.graphPercent / 100 * config.barSize);
-            let insertionsPrecentDay = day.insertions / (day.insertions + day.deletions);
-            let deletionsPrecentDay = day.deletions / (day.insertions + day.deletions);
-            if (config.barType == 'default') {
-                day.graphLine = Array.from({ length: config.barSize }).map((x, index) =>
-                    (index + 1) <= (day.graphPercent) ? '█' : '░').join('');
-            }
-            if (config.barType == 'detailed') {
-                day.graphLine = Array.from({ length: config.barSize }).map((x, index) => {
-
-                    if ((index + 1) <= filledBarLenghtDay) {
-                        if (filledBarLenghtDay == 1) {
-                            if (insertionsPrecentDay > deletionsPrecentDay) {
-                                return '+';
-                            }
-                            else {
-                                return '-';
-                            }
-                        }
-                        else {
-                            if (index + 1 < filledBarLenghtDay - (filledBarLenghtDay * deletionsPrecentDay)) {
-                                return '-';
-                            }
-                            else {
-                                return '+';
-                            }
-                        }
-                    }
-                    else {
-                        if (index == config.barSize - 1) {
-                            return '  ';
-                        }
-                        return ' ';
-                    }
-                }).join('');
-            }
+    
+           
             switch (day.commits.toString().length) {
                 case 1:
                     day.commits += '  '; //alignment to 3 digits limit
@@ -298,10 +251,8 @@ var stat = async function (config, specialParams) {
         }).value();
 
     }
-    if (config.table) {
-        table.sort((a, b) => b[4] - a[4]); //table sorting desc
-    }
-    if (config.daily) {
+  
+   
         let lastDay = resultStat.daily[0].date;
         let firstDay = resultStat.daily[resultStat.daily.length - 1].date;
 
@@ -309,19 +260,10 @@ var stat = async function (config, specialParams) {
         lastDay = Date.parse(lastDay);
 
         var itr = moment.twix(new Date(firstDay), new Date(lastDay)).iterate("days");
+        let allDaysInPeriod = [];
         while (itr.hasNext()) {
-            let progressBar = '';
-            if (config.barType == 'default') {
-                while (progressBar.length < config.barSize) {
-                    progressBar += '░';
-                }
-            }
-            if (config.barType == 'detailed') {
-                while (progressBar.length <= config.barSize) {
-                    progressBar += ' ';
-                }
-            }
-            let obj = { date: itr.next().toDate().toDateString(), commits: "0  ", changed: 0, insertions: 0, deletions: 0, graphLine: progressBar, graphPercent: 0, percent: 0 };
+        
+            let obj = { date: itr.next().toDate().toDateString(), commits: "0  ", changed: 0, insertions: 0, deletions: 0};
             allDaysInPeriod.push(obj)
         }
         allDaysInPeriod.forEach((emptyDay, index) => {
@@ -331,16 +273,18 @@ var stat = async function (config, specialParams) {
                 }
             })
         });
-        resultStat.daily = allDaysInPeriod;
-    }
+        resultStat.daily=allDaysInPeriod;
+        
 
  
 
 
     if(specialParams.output == "json"){
-        return {json: resultStat.authors};
+        return {json: [resultStat.authors, resultStat.daily]};
     }
 
+    
+   
     
 
 }

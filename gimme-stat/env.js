@@ -19,7 +19,7 @@ let config = convict({
     },
     daily: {
         format: Boolean,
-        default: false,
+        default: true,
         arg: 'daily'
     },
     since: {
