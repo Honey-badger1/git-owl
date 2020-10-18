@@ -15,6 +15,7 @@ router.post('/register',
   ],
   async (req, res) => {
     try {
+      console.log('Body: ', req.body)
       const errors = validationResult(req)
 
       if (!errors.isEmpty()) {
@@ -79,9 +80,12 @@ router.post('/login',
         {expiresIn: '1h'}
       )
 
+      console.log('token', token)
+
       res.json({token, userId: user.id})
 
     } catch (e) {
+      console.log('err', e)
       res.status(500).json({message: 'Server Error'})
     }
   })

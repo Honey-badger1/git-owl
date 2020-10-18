@@ -1,4 +1,6 @@
 {
   "port": 5000,
-  "mongoUri": "mongodb+srv://root:root777@cluster0.4rove.mongodb.net/app?retryWrites=true&w=majority"
+  "jwtSecret": "superSecret",
+  "mongoUri": "mongodb+srv://user:pass1234@cluster0.8fycj.azure.mongodb.net/User?retryWrites=true&w=majority"
+
 }
