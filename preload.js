@@ -1,24 +1,26 @@
 window.addEventListener('DOMContentLoaded', () => {
-  let button = document.querySelector("#open");
-  const {
-    dialog
-  } = require('electron').remote;
+
+
   const gimmeStat = require('./gimme-stat');
   let table = document.createElement('table');
   let tableContainer = document.querySelector('#tableContainer');
   let timeForm = document.querySelector('#timeInter');
   let dailyButton = document.querySelector('#daily');
   let daily = false
-
-  dailyButton.addEventListener('click',()=>{
-    daily=true
-  })
  
+  directory=document.getElementById('path');
+
+  
+  dailyButton.addEventListener('click', () => {
+    daily = true
+  })
+
   const dataDaily = async (pathRepo, since, until) => {
     return await gimmeStat.json({
       cwd: pathRepo,
       since: since,
-      until: until
+      until: until,
+      prepull: false
     }).then((answer) => {
       return answer.json[1];
     }).
@@ -44,14 +46,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
   };
-  
 
-  
+
+
   const data = async (pathRepo, since, until) => {
     return await gimmeStat.json({
       cwd: pathRepo,
       since: since,
       until: until,
+      prepull: false
     }).then((answer) => {
       return answer.json[0];
     }).
@@ -77,21 +80,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
   };
-  
-  
 
-  button.addEventListener('click', () => {
+
+
+
+  timeForm.addEventListener('submit', (e) => {
+    let pathDir=localStorage.getItem('pathF');
+    e.preventDefault();
+    let pathF=localStorage.getItem('pathF');
+    console.log(pathF)
     tableContainer.innerHTML = '';
-    let pathRepo = dialog.showOpenDialog({
-      properties: ['openDirectory']
-    }).then(data => data.filePaths);
-    console.log(pathRepo);
-    timeForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      tableContainer.innerHTML = '';
-      let since = timeForm.elements["since"].value;
-      let until = timeForm.elements["until"].value;
-     if(!daily){
+    let since = timeForm.elements["since"].value;
+    let until = timeForm.elements["until"].value;
+    if (!daily) {
       table.innerHTML = `
       <tr> 
        <th>Name</th>
@@ -100,16 +101,14 @@ window.addEventListener('DOMContentLoaded', () => {
       <th>Commits</th>
       <th>Technologies</th>
       </tr>`;
-  
-      pathRepo.then(result => {
-        if (result[0]) {
-  
-          data(result, since, until)
-        }
-      })
-  
-     }
-     table.innerHTML = `
+
+
+
+      data([pathDir], since, until);
+
+
+    } else {
+      table.innerHTML = `
      <tr> 
       <th>Date</th>
      <th>Rows Added</th>
@@ -117,23 +116,13 @@ window.addEventListener('DOMContentLoaded', () => {
      <th>Commits</th>
      <th>Changes</th>
      </tr>`;
- 
-     pathRepo.then(result => {
-       if (result[0]) {
- 
-         dataDaily(result, since, until)
-       }
-     })
-  
-    })
 
 
 
+      dataDaily([pathDir], since, until)
+
+    }
   })
-
-
-
-
 
 
 

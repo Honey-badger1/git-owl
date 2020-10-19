@@ -12,7 +12,8 @@ function createWindow() {
         icon: __dirname + "/img/owl.png",
         webPreferences: {
 		   nodeIntegration:true,
-		   enableRemoteModule: true
+		   enableRemoteModule: true,
+		   webviewTag: true
         }
      
 	});
@@ -40,6 +41,10 @@ app.on('ready',
 app.on('window-all-closed', () => {
 	app.quit();
 });
+
+
+
+
 
 
 
