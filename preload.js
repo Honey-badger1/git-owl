@@ -7,13 +7,25 @@ window.addEventListener('DOMContentLoaded', () => {
   let timeForm = document.querySelector('#timeInter');
   let dailyButton = document.querySelector('#daily');
   let daily = false
- 
-  directory=document.getElementById('path');
+  let commentForm = document.querySelector('#searchComment');
 
-  
+  directory = document.getElementById('path');
+
+
   dailyButton.addEventListener('click', () => {
     daily = true
   })
+
+  const searchComment = async (pathRepo) => {
+    return await gimmeStat.json({
+      cwd: pathRepo,
+      prepull: false
+    }).then((answer) => {
+      return answer.json[2];
+    })
+
+
+  }
 
   const dataDaily = async (pathRepo, since, until) => {
     return await gimmeStat.json({
@@ -81,14 +93,41 @@ window.addEventListener('DOMContentLoaded', () => {
 
   };
 
+  commentForm.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    tableContainer.innerHTML = '';
+    let pathDir = localStorage.getItem('pathF');
+    let commit = commentForm.elements["commits"].value;
+    table.innerHTML = `
+      <tr> 
+       <th>Author</th>
+      <th>Comment</th>
+      <th>Date</th>
+      <tr> `
+    searchComment([pathDir]).
+    then(answer => answer.map(item => {
+
+      if(item.commit.toLowerCase().indexOf(commit.toLowerCase())!==-1){
+      let trd = document.createElement('tr')
+      trd.innerHTML = `<td>${item.name}</td>
+                    <td>${item.commit}</td>
+                    <td>${item.day}</td>`
+      table.append(trd);
+    }
+    })).
+    then(answer => {
+      console.log(answer);
+
+      tableContainer.append(table)
+    })
+
+  })
 
 
 
   timeForm.addEventListener('submit', (e) => {
-    let pathDir=localStorage.getItem('pathF');
+    let pathDir = localStorage.getItem('pathF');
     e.preventDefault();
-    let pathF=localStorage.getItem('pathF');
-    console.log(pathF)
     tableContainer.innerHTML = '';
     let since = timeForm.elements["since"].value;
     let until = timeForm.elements["until"].value;

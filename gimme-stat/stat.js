@@ -47,11 +47,12 @@ var stat = async function (config, specialParams) {
     }
 
     let commits = resultText.split(/^commit .{40,40}$/mi);
-
+    
     let resultStat = {
         changed: 0,
         authors: {},
-        daily: {}
+        daily: {},
+        commitsName:[],
     };
 
 
@@ -61,7 +62,14 @@ var stat = async function (config, specialParams) {
         }
 
         let author = (/Author: (.+)( $| <)/mi).exec(commit)[1];
-       
+        let commitNames=(/\s{4}(.+)/mi).exec(commit)[1];
+        let day = (/Date:(.+)/mi).exec(commit)[1];
+        resultStat.commitsName.push({
+            name: author,
+            commit:commitNames,
+            day:day
+
+        })
 
         if (config.users[0] === "" || config.users.includes(author)) {
             if (config.ignoreUsers.some(user => user === author)) {
@@ -124,7 +132,7 @@ var stat = async function (config, specialParams) {
             if (config.daily) {
 
 
-                let day = (/Date:(.+)/mi).exec(commit)[1];
+                
                 day = (new Date(Date.parse(day))).toDateString();
 
                 if (!resultStat.daily[day]) {
@@ -275,12 +283,12 @@ var stat = async function (config, specialParams) {
         });
         resultStat.daily=allDaysInPeriod;
         
-
+      
  
 
 
     if(specialParams.output == "json"){
-        return {json: [resultStat.authors, resultStat.daily]};
+        return {json: [resultStat.authors, resultStat.daily, resultStat.commitsName]};
     }
 
     

@@ -1,0 +1,34 @@
+body{
+    background-color: rgba(1, 1, 32, 0.7);
+    margin:0;
+    color:white;
+    text-align: center;
+}
+
+
+
+th{
+    background-color: rgb(97, 189, 212);
+}
+.tableContainer{
+   justify-content: center;
+}
+
+table {
+    border-collapse: collapse;
+    margin-left:auto; 
+    margin-right:auto;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom:1px solid rgb(27, 80, 196)
+  }
+  
+  tr:nth-child(even){background-color: #325088}
+  
+  th {
+    background-color: #7199d4;
+    color: white;
+  }

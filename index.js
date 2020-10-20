@@ -40,7 +40,8 @@
                      console.log(pathRepo);
                     
                      
-                     
+                     const gimmeStat = require('./gimme-stat');
+                     console.log(gimmeStat.json({}));
                     
                      
      
@@ -50,7 +51,7 @@
      
                               
                                  title: data[0],
-                                 src: './childindex.html',
+                                 src: './statistics.html',
                                  visible: true,
                                  webviewAttributes: {
                                      nodeintegration: true
@@ -66,8 +67,7 @@
               })
               
 
-         
-    
+             
            
      
             
