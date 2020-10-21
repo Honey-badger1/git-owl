@@ -5,18 +5,49 @@ window.addEventListener('DOMContentLoaded', () => {
   let table = document.createElement('table');
   let tableContainer = document.querySelector('#tableContainer');
   let timeForm = document.querySelector('#timeInter');
+  let commonStats=document.querySelector('#common');
   let dailyButton = document.querySelector('#daily');
-  let daily = false
+  let errorMessage=document.querySelector('#error');
+  let daily = false;
+  let showCommentForm=document.querySelector("#commetPanel")
   let commentForm = document.querySelector('#searchComment');
+  let spinner=document.createElement('div');
+  spinner.innerHTML=`<div class="loadingio-spinner-rolling-98ckucmfro7"><div class="ldio-pokvddfwzc">
+  <div></div>
+  </div></div>`;
 
-  directory = document.getElementById('path');
 
+  showCommentForm.addEventListener('click', ()=>{
+    tableContainer.innerHTML = '';
+    commentForm.classList.remove('hide');
+    commentForm.classList.add('show');
+  })
 
   dailyButton.addEventListener('click', () => {
-    daily = true
+    commentForm.classList.remove('show');
+    commentForm.classList.add('hide');
+    daily = true;
+    tableContainer.innerHTML = '';
+    tableContainer.append(spinner);
+    let pathDir = localStorage.getItem('pathF');
+    table.innerHTML = `
+    <tr> 
+     <th>Date</th>
+    <th>Rows Added</th>
+    <th>Rows Deleted</th>
+    <th>Commits</th>
+    <th>Changes</th>
+    </tr>`;
+    
+
+
+
+     dataDaily([pathDir]);
+    
   })
 
   const searchComment = async (pathRepo) => {
+    tableContainer.append(spinner);
     return await gimmeStat.json({
       cwd: pathRepo,
       prepull: false
@@ -28,6 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   const dataDaily = async (pathRepo, since, until) => {
+    tableContainer.append(spinner);
     return await gimmeStat.json({
       cwd: pathRepo,
       since: since,
@@ -37,10 +69,6 @@ window.addEventListener('DOMContentLoaded', () => {
       return answer.json[1];
     }).
     then(answer => answer.map(item => {
-
-
-
-
       let trd = document.createElement('tr')
       trd.innerHTML = `<td>${item.date}</td>
                   <td>${item.deletions}</td>
@@ -52,9 +80,11 @@ window.addEventListener('DOMContentLoaded', () => {
     })).
     then(answer => {
       console.log(answer);
-
-      tableContainer.append(table)
-    })
+      spinner.remove();
+      tableContainer.append(table);
+    }).catch(
+      errorMessage.classList.remove('hide')
+      )
 
 
   };
@@ -62,6 +92,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
   const data = async (pathRepo, since, until) => {
+    tableContainer.append(spinner);
     return await gimmeStat.json({
       cwd: pathRepo,
       since: since,
@@ -86,12 +117,38 @@ window.addEventListener('DOMContentLoaded', () => {
     })).
     then(answer => {
       console.log(answer);
-
-      tableContainer.append(table)
+      tableContainer.append(table);
+     spinner.remove();
+      
     })
 
 
   };
+
+
+     
+  commonStats.addEventListener('click',()=>{
+    commentForm.classList.remove('show');
+    commentForm.classList.add('hide');
+    daily=false;
+    tableContainer.innerHTML = '';
+    let pathDir = localStorage.getItem('pathF');
+    
+    table.innerHTML = `
+      <tr> 
+       <th>Name</th>
+      <th>Rows Added</th>
+      <th>Rows Deleted</th>
+      <th>Commits</th>
+      <th>Technologies</th>
+      </tr>`;
+
+
+
+      data([pathDir])
+
+  })
+
 
   commentForm.addEventListener('submit',(e)=>{
     e.preventDefault();
@@ -117,8 +174,8 @@ window.addEventListener('DOMContentLoaded', () => {
     })).
     then(answer => {
       console.log(answer);
-
-      tableContainer.append(table)
+      spinner.remove();
+      tableContainer.append(table);
     })
 
   })

@@ -7,5 +7,10 @@ body{
     margin:0;
     color:white;
 }
-
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
 

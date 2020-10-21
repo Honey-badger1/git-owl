@@ -14,41 +14,33 @@
 
 </head>
 <body>
-<div class='btn-group'>
+
+   <div id="path">Repository</div>
+   <div class='btn-group'>
   
-      <button class="btn btn-info">Common Stats</button> 
-      <button class="btn btn-info">Stats by Technologies</button>
-      <button class="btn btn-info">Stats by Day</button>
-      <button class="btn btn-info">Stats by Commits</button>
+      <button id="common" class="btn btn-info shadow-none tab" >Common Stats</button> 
+      <button class="btn btn-info shadow-none tab" >Stats by Technologies</button>
+      <button id="daily" class="btn btn-info shadow-none tab" >Stats by Day</button>
+      <button id="commetPanel" class="btn btn-info shadow-none tab">Stats by Commits</button>
    
 </div>
-   <div id="path">Repository</div>
-  
- <div id=showContainer>
-    <div class="repoContant">
    <form id="timeInter">
-      <input id="since" type="datetime-local"  name="since"  lang="en-us" />
-      <input id="until" type="datetime-local" name="until"  lang="en-us"/>
-      <button type="submit">Report</button>
+      <input id="since" type="datetime-local"  name="since" />
+      <input id="until" type="datetime-local" name="until" />
+      <button type="submit">Add Period</button>
      
    </form>
-    </div>
-    <div class="repoContant">
-       <form id="daily">
-         <input id="since" type="datetime-local"  name="since"  lang="en-us" />
-         <input id="until" type="datetime-local" name="until"  lang="en-us"/>
-        <button type="submit">Get Daily Report</button>
-       </form>
-    </div>
+    
    
-     <div>
-   <form id="searchComment">
+     <form id="searchComment" class="hide">
       <input type="search" name='commits' placeholder="Search comment"/>
-      <button id="searchComment" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-      </form>
-</div>
- </div>
-   <div id="tableContainer" ></div>
+      <button  type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+   </form>
+   
+   <div id="tableContainer" >
+      <div  id="error" class='hide'>Error</div>
+    
+   </div>
    <script src='preload.js' >
 
      </script>
