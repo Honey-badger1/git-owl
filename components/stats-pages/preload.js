@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
 
 
-  const gimmeStat = require('./gimme-stat');
+  const gimmeStat = require('../../backend/gimme-stat');
   let table = document.createElement('table');
   let tableContainer = document.querySelector('#tableContainer');
   let timeForm = document.querySelector('#timeInter');
@@ -220,6 +220,16 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   })
 
+// Stats by stack
+ let stackButton=document.querySelector("#stack");
+ let chart=document.createElement('div');
+ chart.innerHTML=`<div id="chart_div"></div>`
+stackButton.addEventListener('click',()=>{
+  let pathDir = localStorage.getItem('pathF');
+  tableContainer.innerHTML = '';
+  dataStack([pathDir]);
+
+})
 
 
 })

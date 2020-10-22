@@ -46,7 +46,7 @@
 
                             tabGroup.addTab({
                                 title: data[0],
-                                src: './statistics.html',
+                                src: '../components/stats-pages/statistics.html',
                                 visible: true,
                                 webviewAttributes: {
                                     nodeintegration: true
