@@ -1,9 +1,9 @@
 import React from "react";
 
-export const CreatePage = () => {
+export const LocalReposPage = () => {
   return (
-    <div>
+    <React.Fragment>
       <h1>на этой странице мы работаем с локальными репозиториями</h1>
-    </div>
+    </React.Fragment>
   )
 }
