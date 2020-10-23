@@ -1,7 +1,7 @@
 import React from "react";
 import {Switch, Route, Redirect} from "react-router-dom";
-import {LinksPage} from "./pages/LinksPage";
-import {CreatePage} from "./pages/CreatePage";
+import {GithubReposPage} from "./pages/GithubReposPage";
+import {LocalReposPage} from "./pages/LocalReposPage";
 import {DetailPage} from "./pages/DetailPage";
 import {AuthPage} from "./pages/AuthPage";
 
@@ -10,12 +10,15 @@ export const useRoutes = (isAuthenticated) => {
     return (
       <Switch>
         <Route path="/links" exact>
-          <LinksPage/>
+          <GithubReposPage/>
         </Route>
         <Route path="/create" exact>
-          <CreatePage/>
+          <LocalReposPage/>
         </Route>
         <Route path="/detail/:id">
+          <DetailPage/>
+        </Route>
+        <Route path="/profile/:id">
           <DetailPage/>
         </Route>
         <Redirect to="/create"/>
