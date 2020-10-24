@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chartist": "^0.11.4",
+    "chartist-plugin-legend": "^0.6.2",
     "electron": "^10.1.3",
     "electron-tabs": "^0.15.0",
     "gimme-stat": "^3.3.3",

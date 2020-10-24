@@ -7,7 +7,8 @@
 	<title>Git Stats</title>
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-   
+   <link rel="stylesheet"
+   href="../../node_modules/chartist/dist/chartist.css">
    <link rel="stylesheet" href="stats.css">
 
 </head>
@@ -35,17 +36,24 @@
       <button  type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
    </form>
    
+   <div class="chartContainer hide" id="deletions-additions">
+      <div class="ct-chart" id="del-add"></div> 
+      <div class="ct-chart" id="percentChanges"></div> 
+   </div>
+   
+
    <div id="tableContainer" >
+   
       <div  id="error" class='hide'>Error</div>
       
     
    </div>
-   <script src='preload.js' >
+   <script src="../../node_modules/chartist/dist/chartist.min.js"></script>
+   <script src="preload.js" >
 
      </script>
   
- 
-        
+  
 
 
 	

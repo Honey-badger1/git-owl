@@ -4,6 +4,21 @@ body{
     color:white;
     text-align: center;
 }
+.chartContainer{
+  margin-top:30px;
+  margin-bottom:30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  background-color:  rgb(222, 238, 241);
+}
+
+.ct-series-a .ct-bar{
+  stroke: rgba(1, 1, 32, 0.7);
+}
+.ct-series-b .ct-bar{
+  stroke: #4e5cd6;
+}
 
 .hide{
     display: none;
@@ -73,3 +88,55 @@ table {
   transform-origin: 0 0; /* see note above */
 }
 .ldio-pokvddfwzc div { box-sizing: content-box; }
+ 
+.ct-legend .ct-series-0:before {
+  background-color:  rgba(1, 1, 32, 0.7);
+  margin-top: 6px;
+}
+.ct-legend .ct-series-1:before {
+  background-color: #4e5cd6;
+  margin-top: 6px;
+  
+}
+.ct-chart {
+  position: relative;
+}
+.ct-legend {
+  position: relative;
+  z-index: 10;
+  color: rgb(12, 12, 14);
+  list-style: none;
+  text-align: center;
+}
+.ct-legend li {
+  position: relative;
+  padding-left: 23px;
+  margin-right: 10px;
+  margin-bottom: 3px;
+  cursor: pointer;
+  display: inline-block;
+}
+.ct-legend li:before {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  left: 0;
+  content: '';
+  border: 3px solid transparent;
+  border-radius: 2px;
+}
+.ct-legend li.inactive:before {
+  background: transparent;
+}
+.ct-legend.ct-legend-inside {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.ct-legend.ct-legend-inside li{
+  display: block;
+  margin: 0;
+}
+.ct-chart{
+  color:#000;
+}

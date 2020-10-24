@@ -9,7 +9,7 @@ let fs = require('fs');
 var stat = async function (config, specialParams) {
     // const config = require('./env');
     const git = require('git-cmd');
-    const _ = require('lodash');
+    const _ = require("lodash");
     const moment = require('moment'); require('twix');
     
 
