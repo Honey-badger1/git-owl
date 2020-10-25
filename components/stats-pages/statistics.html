@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Git Stats</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Git Stats</title>
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet"
-   href="../../node_modules/chartist/dist/chartist.css">
+   <link rel="stylesheet" href="../../node_modules/chartist/dist/chartist.css">
    <link rel="stylesheet" href="stats.css">
 
 </head>
+
 <body>
 
    <div id="path">Repository</div>
    <div class='btn-group'>
-  
-      <button id="common" class="btn btn-info shadow-none tab" >Common Stats</button> 
-      <button id ="stack" class="btn btn-info shadow-none tab" >Stats by Technologies</button>
-      <button id="daily" class="btn btn-info shadow-none tab" >Stats by Day</button>
+
+      <button id="common" class="btn btn-info shadow-none tab">Common Stats</button>
+      <button id="stack" class="btn btn-info shadow-none tab">Stats by Technologies</button>
+      <button id="daily" class="btn btn-info shadow-none tab">Stats by Day</button>
       <button id="commetPanel" class="btn btn-info shadow-none tab">Stats by Commits</button>
-   
-</div>
+
+   </div>
    <form id="timeInter">
-      <input id="since" type="datetime-local"  name="since" />
+      <input id="since" type="datetime-local" name="since" />
       <input id="until" type="datetime-local" name="until" />
       <button type="submit">Add Period</button>
-     
-   </form>
-    
-   
-     <form id="searchComment" class="hide">
-      <input type="search" name='commits' placeholder="Search comment"/>
-      <button  type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-   </form>
-   
-   <div class="chartContainer hide" id="deletions-additions">
-      <div class="ct-chart" id="del-add"></div> 
-      <div class="ct-chart" id="percentChanges"></div> 
-   </div>
-   
 
-   <div id="tableContainer" >
-   
-      <div  id="error" class='hide'>Error</div>
+   </form>
+
+
+   <form id="searchComment" class="hide">
+      <input type="search" name='commits' placeholder="Search comment" />
+      <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+   </form>
+
+   <div id="statsContainer">
+   </div>
       
-    
+      <div id="tableContainer">
+
+         <div id="error" class='hide'>Error</div>
+
+
+     
    </div>
    <script src="../../node_modules/chartist/dist/chartist.min.js"></script>
-   <script src="preload.js" >
+   <script src="preload.js">
 
-     </script>
-  
-  
+   </script>
 
 
-	
+
+
+
 </body>
+
 </html>

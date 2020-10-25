@@ -4,7 +4,7 @@ body{
     color:white;
     text-align: center;
 }
-.chartContainer{
+.ct-chart{
   margin-top:30px;
   margin-bottom:30px;
   margin-left: auto;
@@ -132,6 +132,9 @@ table {
   position: absolute;
   top: 0;
   right: 0;
+}
+.ct-label{
+  color:rgb(7, 7, 8);
 }
 .ct-legend.ct-legend-inside li{
   display: block;
