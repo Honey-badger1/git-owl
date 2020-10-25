@@ -15,7 +15,16 @@
 
 <body>
 
-   <div id="path">Repository</div>
+   <div id="path">Repository Statistics</div>
+
+   <form id="timeInter">
+      <input id="since" type="datetime-local" name="since" />
+      <input id="until" type="datetime-local" name="until" />
+      <button type="submit">Add Period</button>
+      <button type="reset">Clear Period</button>
+
+   </form>
+
    <div class='btn-group'>
 
       <button id="common" class="btn btn-info shadow-none tab">Common Stats</button>
@@ -24,12 +33,7 @@
       <button id="commetPanel" class="btn btn-info shadow-none tab">Stats by Commits</button>
 
    </div>
-   <form id="timeInter">
-      <input id="since" type="datetime-local" name="since" />
-      <input id="until" type="datetime-local" name="until" />
-      <button type="submit">Add Period</button>
 
-   </form>
 
 
    <form id="searchComment" class="hide">
@@ -51,8 +55,6 @@
    <script src="preload.js">
 
    </script>
-
-
 
 
 
