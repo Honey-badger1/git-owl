@@ -2,7 +2,7 @@ const path = require('path');
 const url = require('url');
 
 const {app, BrowserWindow,  Menu, ipcMain} = require('electron');
-const { createAuthWindow } = require('./auth');
+const { createAuthWindow } = require('../components/authentication/auth');
 
 let win;
 

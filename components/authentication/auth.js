@@ -1,5 +1,6 @@
 const {BrowserWindow} = require('electron');
-const createWindow = require('./window.js');
+const createWindow = require('../../desktop-settings/window.js');
+//const authService = require('../services/auth-service'); 
 
 let win = null;
 
@@ -16,6 +17,7 @@ function createAuthWindow() {
   });
 
   win.loadURL(url.format({
+      //login url
     pathname: path.join(__dirname, '/logo.html'),
     protocol: 'file:',
     slashes: true}));
@@ -30,7 +32,7 @@ function createAuthWindow() {
 
   webRequest.onBeforeRequest(filter, async ({url}) => {
     await authService.loadTokens(url);
-    createAppWindow();
+    createWindow();
     return destroyAuthWin();
   });
 
@@ -49,20 +51,21 @@ function destroyAuthWin() {
   win = null;
 }
 
+
 function createLogoutWindow() {
-  const logoutWindow = new BrowserWindow({
-    show: false,
-  });
-
-  logoutWindow.loadURL(authService.getLogOutUrl());
-
-  logoutWindow.on('ready-to-show', async () => {
-    logoutWindow.close();
-    await authService.logout();
-  });
-}
-
-module.exports = {
-  createAuthWindow,
-  createLogoutWindow,
-};
+    const logoutWindow = new BrowserWindow({
+      show: false,
+    });
+  
+    logoutWindow.loadURL(authService.getLogOutUrl());
+  
+    logoutWindow.on('ready-to-show', async () => {
+      logoutWindow.close();
+      await authService.logout();
+    });
+  }
+  
+  module.exports = {
+    createAuthWindow,
+    createLogoutWindow
+  };
