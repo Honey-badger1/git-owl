@@ -1,9 +1,29 @@
 .Alert {
     background-color: #ee6e73;
-    padding: 1rem;
+    padding: .3rem 1rem;
     border-radius: 3px;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.25);
     margin: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: #fff;
+    font-size: 20px;
+}
+
+.Alert .close {
+    background-color: #ee6e73;
+    border: none;
+    color: #fff;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.Alert .close:hover {
+    transform: scale(1.15);
+    transition: all .3s ease-in-out;
+}
+
+.default-color {
+
 }
