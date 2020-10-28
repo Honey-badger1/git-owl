@@ -2,8 +2,19 @@ const path = require('path');
 const url = require('url');
 
 const {app, BrowserWindow,  Menu, ipcMain} = require('electron');
+const { createAuthWindow } = require('./auth');
 
 let win;
+
+
+async function showWindow() {
+	try {
+	  await authService.refreshTokens();
+	  return createWindow();
+	} catch (err) {
+	  createAuthWindow();
+	}
+  }
 
 function createWindow() {
 	win = new BrowserWindow({
@@ -41,6 +52,8 @@ app.on('ready',
 app.on('window-all-closed', () => {
 	app.quit();
 });
+
+module.exports=createWindow
 
 
 

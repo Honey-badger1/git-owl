@@ -193,19 +193,30 @@ window.addEventListener('DOMContentLoaded', () => {
           }
           new Chartist.Line('#lineChart', {
             labels: nl,
-            series: [newSeries]
-          }, {
+            series:  [{
+              "name": "Changes",
+              "data": newSeries
+            }]}, {
             height: 400,
             axisX: {
               offset: 100
-            }
+            },
+            plugins: [
+              Chartist.plugins.legend()
+            ],
           })
         } else {
           new Chartist.Line('#lineChart', {
             labels: labelDate,
-            series: [seriesChanged]
+            series: [{
+              "name": "Changes",
+              "data": seriesChanged
+            }]
           }, {
             height: 400,
+            plugins: [
+              Chartist.plugins.legend()
+            ],
             axisX: {
               offset: 100
             }
@@ -373,4 +384,29 @@ window.addEventListener('DOMContentLoaded', () => {
 
   })
 
+
+  //Publish
+
+let publishBtn=document.querySelector('.share');
+let publishData=async(pathRepo,url)=>{
+  return await gimmeStat.json({
+    cwd: pathRepo
+  }).then(res=>{
+     fetch(url, {
+      method: 'POST', 
+      headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify(res)
+    })
+  })
+}
+
+publishBtn.addEventListener('click', ()=>{
+ pathDir=localStorage.getItem('pathF');
+ publishData([pathDir],url);
+   
 })
+
+})
+

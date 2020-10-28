@@ -27,6 +27,10 @@ body{
 .ct-series-b .ct-bar{
   stroke: #4e5cd6;
 }
+#lineChart .ct-legend .ct-series-0:before{
+  background-color:  rgba(165, 25, 7, 0.7);
+  margin-top: 6px;
+}
 
 .hide{
     display: none;
@@ -101,6 +105,7 @@ table {
   background-color:  rgba(1, 1, 32, 0.7);
   margin-top: 6px;
 }
+
 .ct-legend .ct-series-1:before {
   background-color: #4e5cd6;
   margin-top: 6px;
@@ -151,3 +156,15 @@ table {
 .ct-chart{
   color:#000;
 }
+.share{
+  width:40px;
+  height:40px;
+  margin-left:93%;
+  border-radius:100%;
+  border:solid 3px teal;
+}
+img{
+  width:30px;
+  height:30px;
+}
+
