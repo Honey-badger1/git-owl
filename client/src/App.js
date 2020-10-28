@@ -6,6 +6,7 @@ import {useRoutes} from "./routes"
 import {useAuth} from "./hooks/auth.hook";
 import {Navbar} from "./components/Navbar";
 import {AlertState} from "./context/alert/AlertState";
+import {GithubState} from "./context/github/GithubState";
 
 function App() {
   const {login, logout, token, userId} = useAuth()
@@ -13,16 +14,18 @@ function App() {
   const isAuthenticated = true
   const routes = useRoutes(isAuthenticated)
   return (
-    <AlertState>
-      <AuthContext.Provider value={{login, logout, token, userId, isAuthenticated}}>
-        <Router>
-          { isAuthenticated && <Navbar/> }
-          <div className="container">
-            {routes}
-          </div>
-        </Router>
-      </AuthContext.Provider>
-    </AlertState>
+    <GithubState>
+      <AlertState>
+        <AuthContext.Provider value={{login, logout, token, userId, isAuthenticated}}>
+          <Router>
+            { isAuthenticated && <Navbar/> }
+            <div className="container">
+              {routes}
+            </div>
+          </Router>
+        </AuthContext.Provider>
+      </AlertState>
+    </GithubState>
   )
 }
 
