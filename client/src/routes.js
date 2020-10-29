@@ -4,7 +4,6 @@ import {GithubReposPage} from "./pages/GithubReposPage";
 import {LocalReposPage} from "./pages/LocalReposPage";
 import {DetailPage} from "./pages/DetailPage";
 import {AuthPage} from "./pages/AuthPage";
-import {Alert} from "./components/Alert";
 
 export const useRoutes = (isAuthenticated) => {
   if (isAuthenticated) {
