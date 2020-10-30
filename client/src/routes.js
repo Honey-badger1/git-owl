@@ -8,21 +8,18 @@ import {AuthPage} from "./pages/AuthPage";
 export const useRoutes = (isAuthenticated) => {
   if (isAuthenticated) {
     return (
-      <Switch>
-        <Route path="/links" exact>
-          <GithubReposPage/>
-        </Route>
-        <Route path="/create" exact>
-          <LocalReposPage/>
-        </Route>
-        <Route path="/detail/:id">
-          <DetailPage/>
-        </Route>
-        <Route path="/profile/:id">
-          <DetailPage/>
-        </Route>
-        <Redirect to="/create"/>
-      </Switch>
+      <React.Fragment>
+        <Switch>
+          <Route path="/links" exact>
+            <GithubReposPage/>
+          </Route>
+          <Route path="/create" exact>
+            <LocalReposPage/>
+          </Route>
+          <Route path="/profile/:name" component={DetailPage}/>
+          <Redirect to="/create"/>
+        </Switch>
+      </React.Fragment>
     )
   }
 

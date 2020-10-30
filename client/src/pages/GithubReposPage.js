@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Search} from "../components/Search";
 import {Card} from "../components/Card";
 import {Alert} from "../components/Alert";
+import {GithubContext} from "../context/github/githubContext";
 
 export const GithubReposPage = () => {
-  const cards = new Array(20).fill('').map((_, i) => i);
+  const {loading, users} = useContext(GithubContext)
 
   return (
   <React.Fragment>
@@ -12,13 +13,16 @@ export const GithubReposPage = () => {
     <Alert alert={{text: 'some alert'}}/>
     <Search />
     <div className="row">
-      {cards.map(card => {
-        return (
-          <div className="col s3 m4" key={card}>
-            <Card />
+
+      {loading
+        ? <p className="loading">Loading...</p>
+        : users.map(user => (
+          <div className="col s3 m4" key={user.id}>
+            <Card user={user} />
           </div>
-        )
-      })}
+        ))
+      }
+
     </div>
   </React.Fragment>
   )
