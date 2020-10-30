@@ -9,7 +9,6 @@ export const useRoutes = (isAuthenticated) => {
   if (isAuthenticated) {
     return (
       <React.Fragment>
-        {/*<Alert alert={{text: 'test alert'}}/>*/}
         <Switch>
           <Route path="/links" exact>
             <GithubReposPage/>
@@ -17,12 +16,7 @@ export const useRoutes = (isAuthenticated) => {
           <Route path="/create" exact>
             <LocalReposPage/>
           </Route>
-          <Route path="/detail/:id">
-            <DetailPage/>
-          </Route>
-          <Route path="/profile/:id">
-            <DetailPage/>
-          </Route>
+          <Route path="/profile/:name" component={DetailPage}/>
           <Redirect to="/create"/>
         </Switch>
       </React.Fragment>

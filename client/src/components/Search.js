@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import 'materialize-css'
+import 'materialize-css';
 import {AlertContext} from "../context/alert/alertContext";
 import {GithubContext} from "../context/github/githubContext";
 

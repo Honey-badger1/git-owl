@@ -7,8 +7,6 @@ import {GithubContext} from "../context/github/githubContext";
 export const GithubReposPage = () => {
   const {loading, users} = useContext(GithubContext)
 
-  console.log(users)
-
   return (
   <React.Fragment>
     <h5>на этой странице мы ищем репозитории в github</h5>
@@ -18,7 +16,6 @@ export const GithubReposPage = () => {
 
       {loading
         ? <p className="loading">Loading...</p>
-        // : <p className="loading">Ready</p>
         : users.map(user => (
           <div className="col s3 m4" key={user.id}>
             <Card user={user} />

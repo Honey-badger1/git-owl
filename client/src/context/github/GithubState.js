@@ -4,7 +4,6 @@ import {GithubContext} from "./githubContext";
 import {githubReducer} from "./githubReducer";
 import {CLEAR_USERS, GET_REPOS, GET_USER, SEARCH_USERS, SET_LOADING} from "../types";
 
-// console.log(process.env.REACT_APP_CLIENT_SECRET)
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
 
@@ -49,7 +48,8 @@ export const GithubState = ({children}) => {
     setLoading()
 
     const response = await axios.get(
-      withCreds(`https://api.github.com/users/${name}/repos?per_page=5&`)
+      // withCreds(`https://api.github.com/users/${name}/repos?per_page=5&`)
+      withCreds(`https://api.github.com/users/${name}/repos?`)
     )
 
     dispatch({

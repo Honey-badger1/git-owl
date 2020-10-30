@@ -9,8 +9,7 @@ export const Card = ({user}) => (
             <span className="card-title">{user.login}</span>
         </div>
         <div className="card-action">
-          {/*<Link to={`/profile/${user.login}`} className="" >Open</Link>*/}
-          <Link to={'/profile/' + user.login} className="" >Open</Link>
+          <Link to={`/profile/${user.login}`} className="">Open</Link>
         </div>
       </div>
 )
