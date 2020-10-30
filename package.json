@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "main": "draft.js",
   "scripts": {
-    "start": "node app",
-    "server": "nodemon app",
-    "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "start": "nodemon app"
   },
   "keywords": [],
   "author": "",
