@@ -7,13 +7,14 @@ const app = express()
 app.use(express.static("public"))
 app.use(express.json({extended: true}))
 app.use('/api/auth', require('./routes/auth.routes'))
-const db="mongodb+srv://margo:12345@gitowl.a7zud.mongodb.net/auth?retryWrites=true&w=majority"
+mongoose.set("debug",true)
+mongoose.Promise=global.Promise
 
 const PORT = process.env.PORT || 5000;
 
 async function start() {
   try {
-    await mongoose.connect(db, {
+    await mongoose.connect(process.env.mongoUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true
