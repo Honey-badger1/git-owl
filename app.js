@@ -1,6 +1,5 @@
 const express = require('express')
-const db = require('./db');
-const config=require('config')
+const config = require('./db');
 const mongoose = require('mongoose')
 
 const app = express()
@@ -8,12 +7,13 @@ const app = express()
 app.use(express.static("public"))
 app.use(express.json({extended: true}))
 app.use('/api/auth', require('./routes/auth.routes'))
+const db="mongodb+srv://margo:12345@gitowl.a7zud.mongodb.net/auth?retryWrites=true&w=majority"
 
 const PORT = process.env.PORT || 5000;
 
 async function start() {
   try {
-    await mongoose.connect(config.get('mongoUri'), {
+    await mongoose.connect(db, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true
