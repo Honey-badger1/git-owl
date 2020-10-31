@@ -2,21 +2,15 @@
   "name": "node-",
   "version": "1.0.0",
   "main": "app.js",
+  "engines": {
+    "node": "12.16.3"
+    },
   "scripts": {
     "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/YuriAnisimov27/Node-.git"
-  },
-  "bugs": {
-    "url": "https://github.com/YuriAnisimov27/Node-/issues"
-  },
-  "homepage": "https://github.com/YuriAnisimov27/Node-#readme",
-  "description": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.2",
