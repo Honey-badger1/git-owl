@@ -1,4 +1,4 @@
 
 module.exports = {
-    DB: 'mongodb://localhost:27017/auth'
+    DB: 'mongodb+srv://margo:margo12345@gitowl.a7zud.mongodb.net/auth?retryWrites=true&w=majority'
 }
