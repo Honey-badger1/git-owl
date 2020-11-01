@@ -11,13 +11,13 @@ app.use('/api/auth', require('./routes/auth.routes'))
 
 
 
-const PORT = process.env.PORT|| 5000
+const PORT = process.env.PORT || 5000
 
 async function start() {
   try {
    
     
-    await mongoose.connect( db.DB, {
+    await mongoose.connect( process.env.mongoUri || db.DB, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true
