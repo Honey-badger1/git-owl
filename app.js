@@ -3,8 +3,8 @@ const db = require('./db')
 const mongoose = require('mongoose')
 
 const app = express()
-
-app.use(express.static("public"))
+const path =require('path')
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(express.json({extended: true}))
 app.use('/api/auth', require('./routes/auth.routes'))
