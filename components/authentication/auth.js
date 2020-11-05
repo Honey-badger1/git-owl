@@ -1,7 +1,7 @@
 const {BrowserWindow} = require('electron');
 const createWindow = require('../../desktop-settings/window.js');
-//const authService = require('../services/auth-service'); 
-
+const path = require('path');
+const router = require('./routes/router'); 
 let win = null;
 
 function createAuthWindow() {
@@ -16,25 +16,14 @@ function createAuthWindow() {
     }
   });
 
-  win.loadURL(url.format({
-      //login url
-    pathname: path.join(__dirname, '/logo.html'),
-    protocol: 'file:',
-    slashes: true}));
+  win.loadURL(
+    path.join(__dirname, '/logo.html'))
 
-  const {session: {webRequest}} = win.webContents;
+    const {session: {webRequest}} = win.webContents;
 
-  const filter = {
-    urls: [
-      'http://localhost/callback*'
-    ]
-  };
 
-  webRequest.onBeforeRequest(filter, async ({url}) => {
-    await authService.loadTokens(url);
-    createWindow();
-    return destroyAuthWin();
-  });
+
+  win.webContents.openDevTools();
 
   win.on('authenticated', () => {
     destroyAuthWin();

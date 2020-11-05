@@ -1,6 +1,6 @@
 const path = require('path');
 const url = require('url');
-
+const router = require('../components/authentication/routes/router'); 
 const {app, BrowserWindow,  Menu, ipcMain} = require('electron');
 const { createAuthWindow } = require('../components/authentication/auth');
 
@@ -9,7 +9,7 @@ let win;
 
 async function showWindow() {
 	try {
-	  await authService.refreshTokens();
+	  await router.res.json;
 	  return createWindow();
 	} catch (err) {
 	  createAuthWindow();
@@ -46,7 +46,7 @@ function createWindow() {
 
 
 app.on('ready',
-    createWindow
+createWindow
    )
 
 app.on('window-all-closed', () => {
