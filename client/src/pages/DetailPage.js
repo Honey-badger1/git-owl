@@ -16,7 +16,6 @@ export const DetailPage = ({match}) => {
 
   if (loading) {
     return <Loader />
-    // return <p className="loading">Loading...</p>
   }
 
   const {

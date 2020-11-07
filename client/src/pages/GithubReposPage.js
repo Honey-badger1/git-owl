@@ -16,7 +16,6 @@ export const GithubReposPage = () => {
     <div className="row">
 
       {loading
-        // ? <p className="loading">Loading...</p>
         ? <Loader />
         : users.map(user => (
           <div className="col s3 m4" key={user.id}>
