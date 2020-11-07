@@ -10,8 +10,8 @@ import {GithubState} from "./context/github/GithubState";
 
 function App() {
   const {login, logout, token, userId} = useAuth()
-  const isAuthenticated = !!token
-  // const isAuthenticated = true
+  // const isAuthenticated = !!token
+  const isAuthenticated = true
   const routes = useRoutes(isAuthenticated)
   return (
     <GithubState>
