@@ -2,6 +2,7 @@ import React, {useContext, useEffect, Fragment} from "react";
 import {GithubContext} from "../context/github/githubContext";
 import {Link} from "react-router-dom";
 import {Repos} from "../components/Repos";
+import Loader from '../components/Loader/Loader';
 
 export const DetailPage = ({match}) => {
   const {getUser, getRepos, loading, user, repos} = useContext(GithubContext)
@@ -14,7 +15,7 @@ export const DetailPage = ({match}) => {
   }, [])
 
   if (loading) {
-    return <p className="loading">Loading...</p>
+    return <Loader />
   }
 
   const {
