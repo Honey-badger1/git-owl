@@ -1,33 +1,33 @@
-window.addEventListener('DOMContentLoaded', () => {
+// window.addEventListener('DOMContentLoaded', () => {
   const gimmeStat = require('../../backend/gimme-stat');
-  let table = document.createElement('table');
-  let tableContainer = document.querySelector('#tableContainer');
-  let statsContainer = document.querySelector('#statsContainer');
-  let spinner = document.createElement('div');
+//   let table = document.createElement('table');
+//   let tableContainer = document.querySelector('#tableContainer');
+//   let statsContainer = document.querySelector('#statsContainer');
+//   let spinner = document.createElement('div');
   require('chartist-plugin-legend');
-  let pathDir = ''
-  spinner.innerHTML = `<div class="loadingio-spinner-rolling-98ckucmfro7"><div class="ldio-pokvddfwzc">
-  <div></div>
-  </div></div>`;
+//   let pathDir = ''
+//   spinner.innerHTML = `<div class="loadingio-spinner-rolling-98ckucmfro7"><div class="ldio-pokvddfwzc">
+//   <div></div>
+//   </div></div>`;
   let Chartist = require('chartist');
-  let since='';
-  let until='';
+//   let since='';
+//   let until='';
 
-  let preLoad = () => {
-    statsContainer.innerHTML = '';
-    tableContainer.innerHTML = '';
-    pathDir = localStorage.getItem('pathF');
-    commentForm.classList.remove('show');
-    commentForm.classList.add('hide');
-    tableContainer.append(spinner);
-  }
+//   let preLoad = () => {
+//     statsContainer.innerHTML = '';
+//     tableContainer.innerHTML = '';
+//     pathDir = localStorage.getItem('pathF');
+//     commentForm.classList.remove('show');
+//     commentForm.classList.add('hide');
+//     tableContainer.append(spinner);
+//   }
 
 
   // Common stats
 
   let commonStats = document.querySelector('#common');
 
-  const data = async (pathRepo, since, until) => {
+  export const data = async (pathRepo, since, until) => {
     let labels = [];
     let series1 = [];
     let series2 = [];
@@ -408,5 +408,5 @@ publishBtn.addEventListener('click', ()=>{
    
 })
 
-})
+// })
 

@@ -30,7 +30,7 @@ function createWindow() {
 	});
 
 	win.loadURL(url.format({
-		pathname: path.join(__dirname, '/index.html'),
+		pathname: path.join(__dirname, '../dist/index.html'),
 		protocol: 'file:',
 		slashes: true
 	}));
@@ -40,8 +40,42 @@ function createWindow() {
 	win.on('closed', () => {
 		win = null;
 	});
-}
 
+	win.webContents.executeJavaScript(`
+		const fs = require('fs');
+		let config = require('../desktop-settings/config.json');
+		config = JSON.parse(JSON.stringify(config));
+
+		let button = document.querySelector("#open");
+			const {
+				dialog
+			} = require('electron').remote;
+		
+			;
+			button.addEventListener('click', () => {
+		
+				let pathRepo = dialog.showOpenDialog({
+					properties: ['openDirectory']
+				}).then(data => data.filePaths);
+				
+				pathRepo.then(data => {
+					
+					if (fs.existsSync(data[0] + "/.git")) {
+						if (!config.reposPaths.some(el => el === data[0])) {
+							config.reposPaths.push(data[0])
+						}
+						fs.writeFileSync("E:/workspace/git-owl/desktop-settings/config.json", JSON.stringify(config))
+						console.log(config)
+						console.log('file or directory exists');
+						let app = document.querySelector("#Statistics");
+					} else {
+						errorMessage.classList.remove('hide');
+						errorMessage.classList.add('show')
+					}
+				})
+			})
+	`)
+}
 
 
 
