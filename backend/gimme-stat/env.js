@@ -27,18 +27,6 @@ let config = convict({
         default: '1.months',
         arg: 'since',
     },
-    graph: {
-        format: ["all", "short", "detailed", "none"],
-        default: 'short',
-        arg: 'graph',
-        env: "GRAPH_FLAG_MISMATCH"
-    },
-    barType: {
-        format: ['default','detailed'],
-        default :'default',
-        arg: 'bartype',
-        env: "GRAPH_FLAG_MISMATCH"
-    },
     table: {
         format: 'Boolean',
         default: false,

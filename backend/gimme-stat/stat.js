@@ -1,5 +1,4 @@
 
-
 "use strict";
 
 
@@ -165,72 +164,14 @@ var stat = async function (config, specialParams) {
     }
     resultStat.authors = _(resultStat.authors).map(author => {
         author.percent = author.changed / resultStat.changed;
-        author.graphPercent = _.ceil(author.percent * 100, 0);
-        let filledBarLenght = Math.floor(author.graphPercent / 100 * config.barSize);
         let insertionsPrecent = author.insertions / (author.insertions + author.deletions);
         let deletionsPrecent = author.deletions / (author.insertions + author.deletions);
-        if (config.barType == 'default') {
-            author.graphLine = Array.from({ length: config.barSize }).map((x, index) => (index + 1) <= (filledBarLenght) ? '█' : '░').join('');
-        }
-        if (config.barType == 'detailed') {
-            author.graphLine = Array.from({ length: config.barSize }).map((x, index) => {
-                if ((index + 1) <= filledBarLenght) {
-                    if (filledBarLenght == 1) {
-                        if (insertionsPrecent > deletionsPrecent) {
-                            return '+';
-                        }
-                        else {
-                            return '-';
-                        }
-                    }
-                    else if (filledBarLenght > 2) {
-                        if (index + 1 < filledBarLenght - (filledBarLenght * deletionsPrecent)) {
-                            return '-';
-                        }
-                        else {
-                            return '+';
-                        }
-                    }
-                }
-                else {
-                    return ' ';
-                }
-            }).join('');
-        }
+       
+           
+        
      
         author.byExt = _(author.byExt).map(ext => {
             ext.percent = ext.changed / author.changed;
-            ext.graphPercent = _.ceil(ext.percent * 100, 0);
-            let filledBarLenghtExt = Math.floor(ext.graphPercent / 100 * config.barSize);
-            if (config.barType == 'default') {
-                ext.graphLine = Array.from({ length: config.barSize }).map((x, index) =>
-                    (index + 1) <= (filledBarLenghtExt) ? '█' : '░').join('');
-            }
-            if (config.barType == 'detailed') {
-                ext.graphLine = Array.from({ length: config.barSize }).map((x, index) => {
-                    if ((index + 1) <= filledBarLenghtExt) {
-                        if (filledBarLenghtExt >= 1 && filledBarLenghtExt < 2) {
-                            if (insertionsPrecent > deletionsPrecent) {
-                                return '+';
-                            }
-                            else {
-                                return '-';
-                            }
-                        }
-                        else {
-                            if (index + 1 < filledBarLenghtExt - (filledBarLenghtExt * deletionsPrecent)) {
-                                return '-';
-                            }
-                            else {
-                                return '+';
-                            }
-                        }
-                    }
-                    else {
-                        return ' ';
-                    }
-                }).join('');
-            }
             ext.extensions = _.uniq(ext.extensions).filter(x => x);
 
             return ext;

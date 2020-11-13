@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
   const gimmeStat = require('../../backend/gimme-stat');
+  const fs = require('fs');
   let table = document.createElement('table');
   let tableContainer = document.querySelector('#tableContainer');
   let statsContainer = document.querySelector('#statsContainer');
@@ -388,24 +389,24 @@ window.addEventListener('DOMContentLoaded', () => {
   //Publish
 
 let publishBtn=document.querySelector('.share');
-let publishData=async(pathRepo,url)=>{
-  return await gimmeStat.json({
-    cwd: pathRepo
-  }).then(res=>{
-     fetch(url, {
-      method: 'POST', 
-      headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-      },
-      body: JSON.stringify(res)
-    })
-  })
-}
 
+const path = require('path');
+
+let baseDir = path.join(__dirname, '/../../gitOwlStats/');
 publishBtn.addEventListener('click', ()=>{
  pathDir=localStorage.getItem('pathF');
- publishData([pathDir],url);
+ let fileName=pathDir.slice((pathDir.lastIndexOf('\\')+1),).replace(/-/gi,'')
+ const dataPub = async (path,since,until) => {
+  return await gimmeStat.json({
+    cwd: path,
+    since: since,
+    until:until,
    
+  }).then(answer=>answer.json.pop())
+  .then(answer=> fs.writeFileSync(`${baseDir}${fileName}`, JSON.stringify(answer)))
+}
+dataPub([pathDir]);
+
 })
 
 })

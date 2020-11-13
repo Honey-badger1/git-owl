@@ -9,20 +9,26 @@
    <link rel="stylesheet" href="../node_modules/electron-tabs/electron-tabs.css">
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel="stylesheet" href="main.css">
+   <link rel="stylesheet" href="../node_modules/dragula/dist/dragula.css">
 
 
 </head>
 <body>
    
-<div id="tabs" class=>
+<div id="tabs" >
    <div class="etabs-tabgroup" >
       <div id="open"  class="etabs-buttons"><i class="fa fa-folder-open-o" aria-hidden="true"></i></div>
       <div class="etabs-tabs"></div>
       <div class="etabs-buttons"></div>
   </div>
-  <div class="etabs-views show"></div>
+  <div id="views" class="etabs-views show"></div>
+
 </div>
-  
+
+<div id="mainSettings">
+   <button id="openTab">Open Repo</button>
+   <button id="recently">Recently Opened</button>
+   </div>
   
 <script>
       require('./tabs.js')

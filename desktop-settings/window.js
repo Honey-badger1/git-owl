@@ -1,7 +1,10 @@
 const path = require('path');
 const url = require('url');
-const {app, BrowserWindow,  Menu, ipcMain} = require('electron');
-const auth=require('../components/authentication/auth-main.js')
+const {app, BrowserWindow, dialog,  Menu, ipcMain} = require('electron');
+const auth=require('../components/authentication/auth-main.js');
+
+
+
 
 let win;
 let openWin;
@@ -35,9 +38,12 @@ function createWindow() {
 
 
 	openWin = new BrowserWindow({
+		parent:win,
+		modal: true,
 		width: 1000,
-		height: 750,
+		height: 700,
 		show:false,
+		autoHideMenuBar: true,
         icon: __dirname + "/img/owl.png",
         webPreferences: {
 		   nodeIntegration:true,
@@ -51,7 +57,10 @@ function createWindow() {
 		pathname: path.join(__dirname, '/open.html'),
 
 	}));
-
+	
+	ipcMain.on('tabs123', (event)=>{
+		event.reply('tabs-rep')
+	})
 
 
 	ipcMain.on('toggle-prefs', function () {
@@ -63,6 +72,8 @@ function createWindow() {
 	openWin.on('closed', () => {
 		openWin.hide()
 	});
+
+	
 
 	
 	authWin = new BrowserWindow({
@@ -80,23 +91,9 @@ function createWindow() {
 
 	authWin.webContents.openDevTools();
 
-	win.on('closed', () => {
-		win = null;
-	});
 
 
-	openWin = new BrowserWindow({
-		width: 1000,
-		height: 750,
-		show:false,
-        icon: __dirname + "/img/owl.png",
-        webPreferences: {
-		   nodeIntegration:true,
-		   enableRemoteModule: true,
-		   webviewTag: true
-        }
-     
-	});
+
 
 
 

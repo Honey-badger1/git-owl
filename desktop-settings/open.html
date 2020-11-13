@@ -6,9 +6,22 @@
     <title>Document</title>
 </head>
 <body>
-   
+  <button id="open">Open Repo</button>
+  <button id="recently">Recently Opened</button>
+  <script >
+    require('./tabs.js')
+ </script>
     <script>
-        const {ipcRenderer} = require('electron')
+      
+        const {ipcRenderer} = require('electron');
+        let btnOpen=document.querySelector('#open')
+         btnOpen.addEventListener('click', () => {
+
+            ipcRenderer.send('tab')
+
+
+
+                  })
         
         var button = document.createElement('button')
         button.textContent = 'Hide'
