@@ -18,7 +18,7 @@
 
     }
     let errorMessage = document.querySelector('#error');
-
+   
     let views=document.querySelector('#views');
     
     
@@ -83,6 +83,11 @@
                     }
                 })
             } 
+            else if (fs.existsSync(`${data[0]}`)) {
+              show(errorMessage)
+              setTimeout(function(){hide(errorMessage)},3000)
+              
+            }
         })
      }
         let button = document.querySelector("#open");

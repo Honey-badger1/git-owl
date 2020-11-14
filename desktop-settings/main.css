@@ -5,6 +5,20 @@ body{
     color:white;
     
 }
+#tabs{
+    z-index: 1;
+}
+
+#error{
+    z-index: 2;
+    margin-left: auto;
+    text-align: center;
+    margin-right: auto;
+    font-size: 12px;
+    width: 150px;
+    background-color:rgb(7, 7, 7);
+    height: 30px;
+}
 .hide{
     display: none;
 }
