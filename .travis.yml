@@ -1,13 +1,10 @@
-sudo: true
 language: node_js
 node_js:
-  - node
-cache:
-  directories:
-    - node_modules
-services:
-    - mongodb
+- node
+cache: npm
+install:
+- npm i
 script:
-  - npm start
-branch: 
-  - reactStats
+- npm start
+on:
+  branch: master
