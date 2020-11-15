@@ -1,7 +1,7 @@
 const path = require('path');
 const url = require('url');
-const {app, BrowserWindow, dialog,  Menu, ipcMain} = require('electron');
-const auth=require('../components/authentication/auth-main.js');
+const {app, BrowserWindow, dialog, session, Menu, ipcMain} = require('electron');
+
 
 
 
@@ -57,11 +57,6 @@ function createWindow() {
 		pathname: path.join(__dirname, '/open.html'),
 
 	}));
-	
-	ipcMain.on('tabs123', (event)=>{
-		event.reply('tabs-rep')
-	})
-
 
 	ipcMain.on('toggle-prefs', function () {
 		if (openWin.isVisible())
@@ -74,8 +69,6 @@ function createWindow() {
 	});
 
 	
-
-	
 	authWin = new BrowserWindow({
 		width: 1000,
 		height: 800,
@@ -85,11 +78,10 @@ function createWindow() {
     useContentSize: true,
     resizable: false,
   });
-  authWin.loadURL('https://git-owl-5.herokuapp.com/');
-
-
-
-	authWin.webContents.openDevTools();
+  authWin.webContents.session.setProxy(function () {
+    authWin.loadURL('http://localhost:5002/')});
+  
+	
 
 
 
