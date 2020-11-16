@@ -1,17 +1,17 @@
 const express = require('express')
-const config = require('config')
+const config = require('./config/default')
 const mongoose = require('mongoose')
 
 const app = express()
 
 app.use(express.json({extended: true}))
 app.use('/api/auth', require('./routes/auth.routes'))
-
-const PORT = config.get('port') || 5000
+app.use(express.static(path.join(__dirname, 'public')))
+const PORT = config.port || 5500
 
 async function start() {
   try {
-    await mongoose.connect(config.get('mongoUri'), {
+    await mongoose.connect(config.mongoUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true

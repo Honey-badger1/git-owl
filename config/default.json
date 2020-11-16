@@ -1,6 +1,0 @@
-{
-  "port": 5000,
-  "jwtSecret": "superSecret",
-  "mongoUri": "mongodb+srv://user:pass1234@cluster0.8fycj.azure.mongodb.net/User?retryWrites=true&w=majority"
-
-}
