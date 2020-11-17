@@ -24,7 +24,7 @@ script:
 - cd ..
 deploy:
 - provider: script
-  cleanup: true
+  skip_cleanup: true
   script: ".travis/deploy.sh"
   on:
     branch: production
