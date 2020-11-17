@@ -19,7 +19,7 @@ install:
 - cd ..
 - npm i
 script:
-- cd ../client
+- cd client
 - npm run build
 - cd ..
 deploy:
