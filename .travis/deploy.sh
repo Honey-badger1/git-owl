@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "###### Starting Deployment ######"
-git stash
+git add
+git commit -a
 
 echo "###### Continue Deployment ######"
 
