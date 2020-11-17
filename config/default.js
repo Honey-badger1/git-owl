@@ -1,6 +1,5 @@
 module.exports={
-  "port": 5000,
-  "jwtSecret": "superSecret",
-  "mongoUri": "mongodb+srv://margo:margo12345@gitowl.a7zud.mongodb.net/auth?retryWrites=true&w=majority"
-
+  port: 5500,
+  jwtSecret: "superSecret",
+  mongoUri: "mongodb://127.0.0.1:27017/owl"
 }

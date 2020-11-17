@@ -3,6 +3,7 @@ import {GithubContext} from "../context/github/githubContext";
 import {Link} from "react-router-dom";
 import {Repos} from "../components/Repos";
 import Loader from '../components/Loader/Loader';
+import Button from '../components/Button/Button';
 
 export const DetailPage = ({match}) => {
   const {getUser, getRepos, loading, user, repos} = useContext(GithubContext)
@@ -24,7 +25,13 @@ export const DetailPage = ({match}) => {
 
   return (
     <Fragment>
-      <Link className='' to='/'>To Main Page</Link>
+      <Link className='' to='/'>
+        <Button
+          type="error"
+        >
+          Main Page
+        </Button>
+      </Link>
 
       <div className="col s12 m7">
         <h2 className="header">{login}</h2>

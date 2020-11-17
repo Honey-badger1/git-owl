@@ -10,7 +10,6 @@ export const GithubReposPage = () => {
 
   return (
   <React.Fragment>
-    <h5>на этой странице мы ищем репозитории в github</h5>
     <Alert alert={{text: 'some alert'}}/>
     <Search />
     <div className="row">
