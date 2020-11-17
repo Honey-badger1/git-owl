@@ -12,7 +12,7 @@ before_install:
 - chmod 600 ~/.ssh/deploy_rsa
 - ssh-add ~/.ssh/deploy_rsa
 addons:
-   ssh_known_hosts: 165.227.158.125 
+  ssh_known_hosts: 165.227.158.125
 install:
 - cd client
 - npm i
