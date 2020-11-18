@@ -15,7 +15,7 @@ var stat = async function (config, specialParams) {
 
   
 
-    let repositories = config.cwd;
+	let repositories = config.cwd;
 
     function getStat(rep, since, until) {
         let cmd = git([
@@ -39,12 +39,12 @@ var stat = async function (config, specialParams) {
     }
 
     let resultText = '';
-    for (let rep of repositories) {
+    // for (let rep of repositories) {
         if (config.prepull) {
-            await git(['pull', 'origin'], { cwd: rep }).pass();
-        }
-        resultText += await getStat(rep, config.since, config.until);
-    }
+			await git(['pull', 'origin'], { cwd: repositories }).pass();
+		}
+		resultText += await getStat(repositories, config.since, config.until);
+    // }
 
     let commits = resultText.split(/^commit .{40,40}$/mi);
     
@@ -169,68 +169,68 @@ var stat = async function (config, specialParams) {
         let filledBarLenght = Math.floor(author.graphPercent / 100 * config.barSize);
         let insertionsPrecent = author.insertions / (author.insertions + author.deletions);
         let deletionsPrecent = author.deletions / (author.insertions + author.deletions);
-        if (config.barType == 'default') {
-            author.graphLine = Array.from({ length: config.barSize }).map((x, index) => (index + 1) <= (filledBarLenght) ? '█' : '░').join('');
-        }
-        if (config.barType == 'detailed') {
-            author.graphLine = Array.from({ length: config.barSize }).map((x, index) => {
-                if ((index + 1) <= filledBarLenght) {
-                    if (filledBarLenght == 1) {
-                        if (insertionsPrecent > deletionsPrecent) {
-                            return '+';
-                        }
-                        else {
-                            return '-';
-                        }
-                    }
-                    else if (filledBarLenght > 2) {
-                        if (index + 1 < filledBarLenght - (filledBarLenght * deletionsPrecent)) {
-                            return '-';
-                        }
-                        else {
-                            return '+';
-                        }
-                    }
-                }
-                else {
-                    return ' ';
-                }
-            }).join('');
-        }
+        // if (config.barType == 'default') {
+        //     author.graphLine = Array.from({ length: config.barSize }).map((x, index) => (index + 1) <= (filledBarLenght) ? '█' : '░').join('');
+        // }
+        // if (config.barType == 'detailed') {
+        //     author.graphLine = Array.from({ length: config.barSize }).map((x, index) => {
+        //         if ((index + 1) <= filledBarLenght) {
+        //             if (filledBarLenght == 1) {
+        //                 if (insertionsPrecent > deletionsPrecent) {
+        //                     return '+';
+        //                 }
+        //                 else {
+        //                     return '-';
+        //                 }
+        //             }
+        //             else if (filledBarLenght > 2) {
+        //                 if (index + 1 < filledBarLenght - (filledBarLenght * deletionsPrecent)) {
+        //                     return '-';
+        //                 }
+        //                 else {
+        //                     return '+';
+        //                 }
+        //             }
+        //         }
+        //         else {
+        //             return ' ';
+        //         }
+        //     }).join('');
+        // }
      
         author.byExt = _(author.byExt).map(ext => {
             ext.percent = ext.changed / author.changed;
             ext.graphPercent = _.ceil(ext.percent * 100, 0);
             let filledBarLenghtExt = Math.floor(ext.graphPercent / 100 * config.barSize);
-            if (config.barType == 'default') {
-                ext.graphLine = Array.from({ length: config.barSize }).map((x, index) =>
-                    (index + 1) <= (filledBarLenghtExt) ? '█' : '░').join('');
-            }
-            if (config.barType == 'detailed') {
-                ext.graphLine = Array.from({ length: config.barSize }).map((x, index) => {
-                    if ((index + 1) <= filledBarLenghtExt) {
-                        if (filledBarLenghtExt >= 1 && filledBarLenghtExt < 2) {
-                            if (insertionsPrecent > deletionsPrecent) {
-                                return '+';
-                            }
-                            else {
-                                return '-';
-                            }
-                        }
-                        else {
-                            if (index + 1 < filledBarLenghtExt - (filledBarLenghtExt * deletionsPrecent)) {
-                                return '-';
-                            }
-                            else {
-                                return '+';
-                            }
-                        }
-                    }
-                    else {
-                        return ' ';
-                    }
-                }).join('');
-            }
+            // if (config.barType == 'default') {
+            //     ext.graphLine = Array.from({ length: config.barSize }).map((x, index) =>
+            //         (index + 1) <= (filledBarLenghtExt) ? '█' : '░').join('');
+            // }
+            // if (config.barType == 'detailed') {
+            //     ext.graphLine = Array.from({ length: config.barSize }).map((x, index) => {
+            //         if ((index + 1) <= filledBarLenghtExt) {
+            //             if (filledBarLenghtExt >= 1 && filledBarLenghtExt < 2) {
+            //                 if (insertionsPrecent > deletionsPrecent) {
+            //                     return '+';
+            //                 }
+            //                 else {
+            //                     return '-';
+            //                 }
+            //             }
+            //             else {
+            //                 if (index + 1 < filledBarLenghtExt - (filledBarLenghtExt * deletionsPrecent)) {
+            //                     return '-';
+            //                 }
+            //                 else {
+            //                     return '+';
+            //                 }
+            //             }
+            //         }
+            //         else {
+            //             return ' ';
+            //         }
+            //     }).join('');
+            // }
             ext.extensions = _.uniq(ext.extensions).filter(x => x);
 
             return ext;
@@ -239,12 +239,8 @@ var stat = async function (config, specialParams) {
         return author;
     }).orderBy('changed', 'desc').value();
 
-    if (config.daily) {
-       
-
         resultStat.daily = _(resultStat.daily).map(day => {
     
-           
             switch (day.commits.toString().length) {
                 case 1:
                     day.commits += '  '; //alignment to 3 digits limit
@@ -258,8 +254,6 @@ var stat = async function (config, specialParams) {
             return day;
         }).value();
 
-    }
-  
    
         let lastDay = resultStat.daily[0].date;
         let firstDay = resultStat.daily[resultStat.daily.length - 1].date;
@@ -282,18 +276,9 @@ var stat = async function (config, specialParams) {
             })
         });
         resultStat.daily=allDaysInPeriod;
-        
-      
- 
 
-
-    if(specialParams.output == "json"){
+	if(specialParams.output == "json"){
         return {json: [resultStat.authors, resultStat.daily, resultStat.commitsName]};
     }
-
-    
-   
-    
-
 }
 module.exports = stat;

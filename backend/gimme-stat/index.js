@@ -5,14 +5,14 @@ let gimmeStat = {
   
 
   
-    json: (userConfig) => {
+    json: async (userConfig) => {
         let stat = require('./stat');
         let defaultConfig = require('./env');
         defaultConfig = Object.assign(defaultConfig, userConfig);
         let specialParams = {
             output: "json"
-        }
-        return stat(defaultConfig,specialParams);
+		}
+        return await stat(defaultConfig,specialParams);
     },
 }
 

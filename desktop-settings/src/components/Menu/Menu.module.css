@@ -1,0 +1,11 @@
+.menuContainer {
+	width: 5vw;
+	min-height: 100vh;
+	float: left;
+	background-color: #161616;
+	position: fixed;
+}
+
+.buttonContainer {
+	background-color: blue;
+}
