@@ -15,7 +15,6 @@ function StatsByCommits(props) {
 		});
 		setSearchHeandler(true);
 		setArray(arr);
-		console.log(arr)
 		e.preventDefault();
 	}
 

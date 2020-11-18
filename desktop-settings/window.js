@@ -33,7 +33,7 @@ function createWindow() {
     });
 
     ipcMain.on('last-statistics-request', (event, path) => {
-        let config = fs.readFileSync(`${__dirname}/config.json`, { encoding: 'utf8' });
+        let config = fs.readFileSync(`${__dirname}/config/config.json`, { encoding: 'utf8' });
         config = JSON.parse(config);
         const index = config.lastStatisticsRequest.map((el) => el.path).indexOf(path);
         event.reply('last-statistics-request', (index >= 0) ? config.lastStatisticsRequest[index].statistics : []);
@@ -41,7 +41,7 @@ function createWindow() {
 
     ipcMain.on('get-statistics', async (event, path, since, until) => {
         const result = await data(path, since, until);
-        let config = fs.readFileSync(`${__dirname}/config.json`, { encoding: 'utf8' });
+        let config = fs.readFileSync(`${__dirname}/config/config.json`, { encoding: 'utf8' });
         config = JSON.parse(config);
         !config.lastStatisticsRequest.some((el) => el.path === path)
             ? config.lastStatisticsRequest.push({ path, statistics: result })
@@ -51,13 +51,12 @@ function createWindow() {
                 }
                 return el;
             });
-        fs.writeFileSync(`${__dirname}/config.json`, JSON.stringify(config));
+        fs.writeFileSync(`${__dirname}/config/config.json`, JSON.stringify(config));
         event.reply('get-statistics', JSON.stringify(result));
     });
 
     ipcMain.on('choose-directory', async (event) => {
-        let config = require('./config.json');
-        config = JSON.parse(JSON.stringify(config));
+        let config = require('./config/config.json');
 
         const { dialog } = require('electron');
 
@@ -68,10 +67,9 @@ function createWindow() {
         pathRepo.then((data) => {
             if (fs.existsSync(`${data[0]}/.git`)) {
                 if (!config.reposPaths.some((el) => el === data[0])) {
-                    config.reposPaths.push(data[0]);
+					config.reposPaths.push(data[0]);
+					fs.writeFileSync(`${__dirname.replace(/\\/g, "/")}/config/config.json`, JSON.stringify(config));
                     event.reply('add-path', config.reposPaths);
-
-                    fs.writeFileSync(`${__dirname}/config.json`, JSON.stringify(config));
                 }
             }
         });

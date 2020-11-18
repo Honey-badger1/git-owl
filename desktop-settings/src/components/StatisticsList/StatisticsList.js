@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import styles from './StatisticsList.module.css';
-import { reposPaths } from '../../../config.json'
+import { reposPaths } from '../../../config/config.json'
 import { Link, Route } from 'react-router-dom'
 import Statistics from '../Statistics/Statistics'
 
@@ -21,7 +21,6 @@ function StatisticsList(props) {
 	window.ipcRenderer.on('add-path', (event, args) => {
 		setPaths(args);
 	});
-	
 	const checkPaths = () => paths.length?paths:reposPaths;
     return (
         <div className={styles.statisticsContainer}>

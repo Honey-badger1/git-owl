@@ -5,7 +5,6 @@ import styles from './Menu.module.css';
 function Menu(props) {
 
 	function chooseDirectory() {
-		console.log('12')
 		ipcRenderer.send('choose-directory')
 	}
 
