@@ -23,7 +23,7 @@ body{
     display: none;
 }
 .show{
-    display: block;
+    display: flex;
 }
 
 form{
@@ -31,8 +31,21 @@ form{
     margin-right:auto;
 
 }
+h3{
+    font-size: 16px;
+}
+#sets{margin-top:25px;}
 #tabOpen{
 z-index: 2;
+}
+#mainSettings{
+
+    flex-direction: row;
+    height: auto;
+}
+#settings{
+    margin-left: 25%;
+    
 }
 
 

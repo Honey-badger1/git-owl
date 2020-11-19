@@ -29,12 +29,35 @@
 </div>
 
 <div id="mainSettings">
-   <button id="openTab">Open Repo</button>
-   <button id="recently">Recently Opened</button>
+  <div id="btn">
+   <button id="openTab">Open Repo</button><br/>
+   <button id="sets">Settings</button>
+  </div>
+  <div id="settings">
+     <h3>Main Theme</h3>
+     <input type="radio" id="night"
+     name="theme" value="night" checked>
+    <label for="night">Night</label>
+     <input type="radio" id="day"
+     name="theme" value="day">
+    <label for="day">Day</label>
+   <h3>Alert Color</h3>
+   <input type="radio" id="black"
+   name="alert" value="black" checked>
+  <label for="black">Black</label>
+  <input type="radio" id="red"
+  name="alert" value="red">
+ <label for="red">Red</label>
+     
+  </div>
+
    </div>
   
 <script>
       require('./tabs.js')
+</script>
+<script>
+   require('./settings.js')
 </script>
 <script>
    require('./menu.js')

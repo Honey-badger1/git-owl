@@ -2,9 +2,8 @@
     const TabGroup = require("electron-tabs");
     const fs = require('fs');
     const dragula = require("dragula");
-    const {remote, ipcRenderer} = require('electron')
-    const {Menu, MenuItem} = remote;
-    let setMain=document.querySelector('#mainSettings')
+    let setMain=document.querySelector('#mainSettings');
+    let setContent=document.querySelector('#settings');
 
     const hide=(elem)=>{
         elem.classList.remove('show')
@@ -17,8 +16,8 @@
         elem.classList.add('show');
 
     }
+
     let errorMessage = document.querySelector('#error');
-   
     let views=document.querySelector('#views');
     
     
@@ -41,8 +40,9 @@
           show(setMain);        
             
         }else{
+          hide(setMain);
            show(views);
-           hide(setMain);
+           
         }
     })
 
@@ -75,15 +75,17 @@
 
                 tabGroup.addTab({
                     title: data[0],
-                    src: '../components/stats-pages/statistics.html',
+                    src: '../asset/stats-pages/statistics.html',
                     visible: true,
                     webviewAttributes: {
                         nodeintegration: true
 
                     }
-                })
+                });
+                setContent.style.display='none'; 
             } 
             else if (fs.existsSync(`${data[0]}`)) {
+              errorMessage.style.backgroundColor=localStorage.getItem('alColor')
               show(errorMessage)
               setTimeout(function(){hide(errorMessage)},3000)
               
@@ -98,27 +100,12 @@
     
     button.addEventListener('click', openBtnClick)
 
-    
-    let menu = new Menu()
-    
-    menu.append(new MenuItem(
-      {
-        label: 'File',
-        submenu: [
-          {
-            label: 'Open',
-            click: openBtnClick,
-    
-            
-          }
-        ]
-      })
-    );
-    Menu.setApplicationMenu(menu);
+
+   
 
 
 let openTab=document.querySelector('#openTab');
 openTab.addEventListener('click', openBtnClick)
-    
+module.exports=openBtnClick;
 
     

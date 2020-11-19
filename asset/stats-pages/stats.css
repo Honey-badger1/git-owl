@@ -167,4 +167,26 @@ img{
   width:30px;
   height:30px;
 }
+body::-webkit-scrollbar-thumb {
+   
+  border-radius: 10px;
+  background: rgba(44, 105, 151, 0.3);
+  visibility: visible;
+  
+}
+body::-webkit-scrollbar {
+  position: absolute;
+  width: 3px;
+  z-index: 2;
+  background: rgba(30, 85, 127, 0.3);}
 
+.btns{
+  color:white;
+  background-color:rgb(31, 123, 228);
+  
+}
+.btns:hover, .btns:active{
+  color:white;
+  background-color:rgb(20, 61, 109);
+  
+}

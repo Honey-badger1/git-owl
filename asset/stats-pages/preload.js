@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-  const gimmeStat = require('../../backend/gimme-stat');
+  const gimmeStat = require('../../lib/gimme-stat');
   const fs = require('fs');
   let table = document.createElement('table');
   let tableContainer = document.querySelector('#tableContainer');

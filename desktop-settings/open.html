@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="open.css">
     <title>Document</title>
 </head>
 <body>
-  <button id="open">Open Repo</button>
-  <button id="recently">Recently Opened</button>
+<ul>
+  <li><button id="open">Open Repo</button></li>
+  <li><button id="recently">Recently Opened</button></li>
+</ul>
   <script >
     require('./tabs.js')
  </script>
-    <script>
+   <script>
       
-        const {ipcRenderer} = require('electron');
-        let btnOpen=document.querySelector('#open')
-         btnOpen.addEventListener('click', () => {
+  /**  const {ipcRenderer} = require('electron');
+  let btnOpen=document.querySelector('#open')
+   btnOpen.addEventListener('click', () => {
 
-            ipcRenderer.send('tab')
+      ipcRenderer.send('tab')
 
 
 
-                  })
-        
-        var button = document.createElement('button')
-        button.textContent = 'Hide'
-        button.addEventListener('click', function () {
-          ipcRenderer.send('toggle-prefs')
-        });
-        document.body.appendChild(button)
-        </script>
+            })
+  
+  var button = document.createElement('button')
+  button.textContent = 'Hide'
+  button.addEventListener('click', function () {
+    ipcRenderer.send('toggle-prefs')
+  });
+  document.body.appendChild(button)*/
+  </script>
 </body>
 </html>

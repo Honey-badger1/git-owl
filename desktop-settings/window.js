@@ -30,14 +30,14 @@ function createWindow() {
 		slashes: true
 	}));
 
-	win.webContents.openDevTools();
+	/*win.webContents.openDevTools();*/
 
 	win.on('closed', () => {
 		win = null;
 	});
 
 
-	openWin = new BrowserWindow({
+ /*	openWin = new BrowserWindow({
 		parent:win,
 		modal: true,
 		width: 1000,
@@ -80,17 +80,7 @@ function createWindow() {
   });
   authWin.webContents.session.setProxy(function () {
     authWin.loadURL('http://localhost:5002/')});
-  
-	
-
-
-
-
-
-
-
-	
-
+   */
   
 };
   
