@@ -3,8 +3,9 @@ import TechnologiesChart from '../TechnologiesChart/TechnologiesChart'
 
 function StatsByTechnologies(props) {
 	const stats = JSON.parse(props.stats)[0];
+	
     return (
-		stats.map(item => <TechnologiesChart stats={item} />)
+		stats?stats.map(item => <TechnologiesChart stats={item} />):<p>No Results Found</p>
 	);
 }
 

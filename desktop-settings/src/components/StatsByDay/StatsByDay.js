@@ -3,7 +3,7 @@ import LineChart from '../LineChart/LineChart'
 
 
 function StatsByDay(props) {
-    const stats = JSON.parse(props.stats)[1]
+    const stats = JSON.parse(props.stats)[1];
     return (
 		stats?<>
 		<LineChart stats={stats} />

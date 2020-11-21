@@ -1,0 +1,58 @@
+.preloaderContainer {
+	position: relative;
+	width: 10vw;
+	height: 10vw;
+	box-sizing: border-box;
+	margin: auto;
+}
+
+.circleContainer {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.inner {
+	width: 80%;
+	height: 80%;
+}
+
+.middle {
+	width: 90%;
+	height: 90%;
+}
+
+.outer {
+	width: 100%;
+	height: 100%;
+}
+
+.innerCircle, .outerCircle, .middleCircle {
+	border-radius: 50%;
+	width: 100%;
+	height: 100%;
+}
+
+.innerCircle {
+	border: 2px solid red;
+	border-left: 2px solid transparent;
+	animation: circleAnimation .5s linear infinite;
+}
+
+.outerCircle {
+	border: 2px solid green;
+	border-left: 2px solid transparent;
+	animation: circleAnimation .75s linear infinite;
+}
+
+.middleCircle {
+	border: 2px solid orange;
+	border-left: 2px solid transparent;
+	animation: circleAnimation 1s linear infinite;
+}
+
+@keyframes circleAnimation {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
