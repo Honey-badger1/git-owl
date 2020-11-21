@@ -10,11 +10,11 @@ function Menu(props) {
 
 	return (
 		<div className={styles.menuContainer}>
-			<div className={styles.buttonContainer}>
-				<button id="open" onClick={(e) => {chooseDirectory(e)}}>O</button>
+			<div className={`${styles.buttonContainer}`}>
+				<div id="open" onClick={(e) => {chooseDirectory(e)}}>O</div>
 			</div>
-			<div className={styles.buttonContainer}>
-				<button id="settings">S</button>
+			<div className={`${styles.buttonContainer}`}>
+				<div id="settings">S</div>
 			</div>
 		</div>
     );
