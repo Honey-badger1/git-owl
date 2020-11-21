@@ -21,13 +21,19 @@ function StatisticsList(props) {
 	window.ipcRenderer.on('add-path', (event, args) => {
 		setPaths(args);
 	});
-	const checkPaths = () => paths.length?paths:reposPaths;
+
+	function closeTab(path) {
+		window.ipcRenderer.send('close-tab', path);
+	}
+
+	const checkPaths = () => (paths && paths.length)?paths:reposPaths;
     return (
         <div className={styles.statisticsContainer}>
 			<div className={styles.tabsContainer}>
 				{checkPaths().map((el) =>
-					<div className={(currentTab !== el)?`${styles.tabs}`:`${styles.currentTab}`} key={el} onClick={(e) => lastStatisticsRequest(e, el)}>
-						<Link className={styles.links} to={'/' + el.replace(/\\/g, "/")}>{el.split('\\').reverse()[0]}</Link>
+					<div className={(currentTab !== el)?`${styles.tabs}`:`${styles.currentTab}`} key={el}>
+						<Link className={styles.links} to={'/' + el.replace(/\\/g, "/")} onClick={(e) => lastStatisticsRequest(e, el)}>{el.split('\\').reverse()[0]}</Link>
+						<div className={styles.closeTabButton} onClick={(e) => closeTab(el)}></div>
 					</div>
 				)}
 			</div>

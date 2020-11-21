@@ -56,8 +56,8 @@ function createWindow() {
     });
 
     ipcMain.on('choose-directory', async (event) => {
-        let config = require('./config/config.json');
-
+		let config = fs.readFileSync(`${__dirname}/config/config.json`, { encoding: 'utf8' });
+		config = JSON.parse(config);
         const { dialog } = require('electron');
 
         const pathRepo = dialog.showOpenDialog({
@@ -68,12 +68,21 @@ function createWindow() {
             if (fs.existsSync(`${data[0]}/.git`)) {
                 if (!config.reposPaths.some((el) => el === data[0])) {
 					config.reposPaths.push(data[0]);
-					fs.writeFileSync(`${__dirname.replace(/\\/g, "/")}/config/config.json`, JSON.stringify(config));
+					fs.writeFileSync(`${__dirname}/config/config.json`, JSON.stringify(config));
                     event.reply('add-path', config.reposPaths);
                 }
             }
         });
     });
+
+	ipcMain.on('close-tab', (event, path) => {
+		let config = fs.readFileSync(`${__dirname}/config/config.json`, { encoding: 'utf8' });
+		config = JSON.parse(config);
+		config.lastStatisticsRequest = config.lastStatisticsRequest.filter(el => el.path !== path);
+		config.reposPaths = config.reposPaths.filter(el => el !== path);
+        fs.writeFileSync(`${__dirname}/config/config.json`, JSON.stringify(config));
+		event.reply('add-path', config.reposPaths);
+	})
 
     win.loadURL(url.format({
         pathname: path.join(__dirname, '../dist/index.html'),

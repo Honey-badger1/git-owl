@@ -4,6 +4,8 @@
 	float: left;
 	background-color: #161616;
 	position: fixed;
+	border-right: 1px solid black;
+	box-sizing: border-box;
 }
 
 .buttonContainer {
