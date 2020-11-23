@@ -32,7 +32,7 @@ function LineChart(props) {
 	              "data": newSeries.length?newSeries:seriesChanged
 	            }]}} 
 			options={{
-	            height: 400,
+				height: 400,
 	            plugins: [
 	              Chartist.plugins.legend()
 	            ],

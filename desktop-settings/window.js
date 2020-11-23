@@ -3,7 +3,7 @@ const path = require('path');
 const url = require('url');
 const fs = require('fs');
 
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, ipcRenderer } = require('electron');
 const gimmeStat = require('../backend/gimme-stat');
 
 const data = async (pathRepo, since, until) => {
@@ -82,7 +82,27 @@ function createWindow() {
 		config.reposPaths = config.reposPaths.filter(el => el !== path);
         fs.writeFileSync(`${__dirname}/config/config.json`, JSON.stringify(config));
 		event.reply('add-path', config.reposPaths);
-	})
+	});
+
+	ipcMain.on('change-theme', (event, theme) => {
+		let config = fs.readFileSync(`${__dirname}/config/config.json`, { encoding: 'utf8' });
+		config = JSON.parse(config);
+		config.darkTheme = (theme === null)?config.darkTheme:!config.darkTheme;
+        fs.writeFileSync(`${__dirname}/config/config.json`, JSON.stringify(config));
+		event.reply('change-theme', config.darkTheme);
+	});
+
+	ipcMain.on('get-theme', (event) => {
+		let config = fs.readFileSync(`${__dirname}/config/config.json`, { encoding: 'utf8' });
+		config = JSON.parse(config);
+		event.reply('get-theme', config.darkTheme);
+	});
+
+	ipcMain.on('get-paths', (event) => {
+		let config = fs.readFileSync(`${__dirname}/config/config.json`, { encoding: 'utf8' });
+		config = JSON.parse(config);
+		event.reply('get-paths', config.reposPaths);
+	});
 
     win.loadURL(url.format({
         pathname: path.join(__dirname, '../dist/index.html'),
@@ -90,15 +110,14 @@ function createWindow() {
         slashes: true,
     }));
 
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
 
     win.on('closed', () => {
         win = null;
     });
 }
 
-app.on('ready',
-    createWindow);
+app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
     app.quit();

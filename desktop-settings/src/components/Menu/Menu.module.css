@@ -4,6 +4,7 @@
 	float: left;
 	background-color: #161616;
 	position: fixed;
+	z-index: 3;
 	border-right: 1px solid black;
 	box-sizing: border-box;
 }

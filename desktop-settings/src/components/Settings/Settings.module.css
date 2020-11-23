@@ -1,0 +1,45 @@
+.settings {
+	width: 20vw;
+	height: 100vh;
+	position: fixed;
+	left: 5vw;
+	background-color: #161616;
+	border-right: 1px solid black;
+	z-index: 2;
+	animation: settings .25s linear;
+}
+
+.toggle {
+	width: 6.4vh;
+	height: 3.4vh;
+	padding: .2vh;
+	border-radius: 2vw;
+	background-color: gray;
+	margin: auto;
+}
+
+.toggleButton {
+	width: 3vh;
+	height: 3vh;
+	border-radius: 50%;
+	background-color: white;
+	cursor: pointer;
+}
+
+.activeToggleButton {
+	width: 3vh;
+	height: 3vh;
+	border-radius: 50%;
+	background-color: black;
+	cursor: pointer;
+	float: right;
+}
+
+@keyframes settings {
+	0% {
+		transform: translate(-20vw, 0);
+	}
+	100% {
+		transform: translate(0vw, 0);
+	}
+}

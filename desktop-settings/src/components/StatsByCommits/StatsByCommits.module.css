@@ -1,0 +1,24 @@
+.tableContainer{
+	justify-content: center;
+	margin: 2vh;
+}
+
+.table {
+	border-collapse: collapse;
+	margin-left:auto; 
+	margin-right:auto;
+}
+
+.t {
+	text-align: left;
+	padding: 8px;
+	border-bottom:1px solid gray;
+}
+
+.form {
+	margin: 2vh auto;
+}
+
+.formElement {
+	margin: 1vh;
+}

@@ -1,0 +1,16 @@
+.tableContainer{
+	margin: 2vh;
+	justify-content: center;
+}
+
+.table {
+	border-collapse: collapse;
+	margin-left:auto; 
+	margin-right:auto;
+}
+
+.t {
+	text-align: left;
+	padding: 8px;
+	border-bottom:1px solid gray;
+}
